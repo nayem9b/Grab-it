@@ -2,9 +2,12 @@ import Head from "next/head";
 import RootLayout from "@/components/Layouts/RootLayout";
 import Banner from "@/components/UI/Banner";
 import NewsCard from "@/UI/NewsCard";
+import { useGetNewsQuery } from "@/redux/api/api";
 
 const HomePage = ({ allNews }) => {
   console.log(allNews);
+  const { data, isError, isLoading } = useGetNewsQuery();
+  console.log(data);
   return (
     <>
       <Head>
