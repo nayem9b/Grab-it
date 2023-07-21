@@ -26,7 +26,7 @@ const HomePage = ({ allNews }) => {
       </Head>
       <DynamicBanner />
       <div className="grid grid-cols-4 gap-10">
-        {allNews.map((news) => (
+        {allNews?.map((news) => (
           <NewsCard key={news.id} news={news}></NewsCard>
         ))}
       </div>
@@ -51,12 +51,13 @@ HomePage.getLayout = function getLayout(page) {
 //   };
 // };
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:8000/news");
+  const res = await fetch("http://localhost:3000/api/news");
+  // console.log(res);
   const data = await res.json();
   console.log(data);
   return {
     props: {
-      allNews: data,
+      allNews: data.data,
     },
   };
 };

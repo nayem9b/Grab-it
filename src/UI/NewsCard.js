@@ -17,7 +17,7 @@ const NewsCard = ({ news }) => (
       <Meta title="Europe Street beat" description="www.instagram.com" />
       <div>
         <h1>Comment:{news.comment_count}</h1>
-        <Link href={`/news/${news?.id}`}>
+        <Link href={`/news/${news?._id}`}>
           <p>Keep Reading</p>
         </Link>
       </div>
