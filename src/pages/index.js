@@ -1,6 +1,7 @@
 import Head from "next/head";
 import RootLayout from "@/components/Layouts/RootLayout";
 import Banner from "@/components/UI/Banner";
+import NewsCard from "@/UI/NewsCard";
 
 const HomePage = ({ allNews }) => {
   console.log(allNews);
@@ -16,6 +17,11 @@ const HomePage = ({ allNews }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
+      <div className="grid grid-cols-4 gap-10">
+        {allNews.map((news) => (
+          <NewsCard key={news.id} news={news}></NewsCard>
+        ))}
+      </div>
     </>
   );
 };
@@ -33,5 +39,6 @@ export const getStaticProps = async () => {
     props: {
       allNews: data,
     },
+    revalidate: 10,
   };
 };
