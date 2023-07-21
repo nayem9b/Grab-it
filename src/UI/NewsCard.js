@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "antd";
+import Link from "next/link";
 const { Meta } = Card;
 const NewsCard = ({ news }) => (
   <div>
@@ -18,6 +19,9 @@ const NewsCard = ({ news }) => (
       <Meta title="Europe Street beat" description="www.instagram.com" />
       <div>
         <h1>Comment:{news.comment_count}</h1>
+        <Link href={`/news/${news?.id}`}>
+          <p>Keep Reading</p>
+        </Link>
       </div>
     </Card>
   </div>
