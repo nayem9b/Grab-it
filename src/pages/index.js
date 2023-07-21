@@ -3,11 +3,16 @@ import RootLayout from "@/components/Layouts/RootLayout";
 import Banner from "@/components/UI/Banner";
 import NewsCard from "@/UI/NewsCard";
 import { useGetNewsQuery } from "@/redux/api/api";
+import dynamic from "next/dynamic";
 
 const HomePage = ({ allNews }) => {
   console.log(allNews);
   const { data, isError, isLoading } = useGetNewsQuery();
   console.log(data);
+  const DynamicBanner = dynamic(() => import("@/components/UI/Banner"), {
+    loading: () => <h1>Loading...</h1>,
+    ssr: false,
+  });
   return (
     <>
       <Head>
@@ -19,7 +24,7 @@ const HomePage = ({ allNews }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Banner />
+      <DynamicBanner />
       <div className="grid grid-cols-4 gap-10">
         {allNews.map((news) => (
           <NewsCard key={news.id} news={news}></NewsCard>
